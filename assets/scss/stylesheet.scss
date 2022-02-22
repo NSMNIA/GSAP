@@ -1,294 +1,357 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    &#home{
-        font-weight: 900;
-        &, * {
-            cursor: none;
-        }
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  &#home {
+    font-weight: 900;
+    &,
+    * {
+      cursor: none;
     }
+  }
 
-    &#travel{
-        background-color: #fff8f8;
-        height: 100vh;
-    }
-}
-
-.cursor{
-    position: fixed;
-    background-color: #2128bd;
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 5555px;
-    margin: -10px 0 0 -10px;
-    will-change: transform;
-    user-select: none;
-    pointer-events: none;
-    z-index: 99999;
-}
-
-.shapes{
-    position: relative;
+  &#travel {
+    background-color: #fff8f8;
     height: 100vh;
-    width: 100vw;
-    background: #2128bd;
+  }
+}
+
+.cursor {
+  position: fixed;
+  background-color: #2128bd;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 5555px;
+  margin: -10px 0 0 -10px;
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.shapes {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: #2128bd;
+  overflow: hidden;
+
+  .shape {
+    will-change: transform;
+    position: absolute;
+    border-radius: 5555px;
+
+    $shapes: (
+      #005ffe: 650px,
+      #ffe5e3: 440px,
+      #ffcc57: 270px,
+    );
+
+    @each $color, $size in $shapes {
+      &.shape-#{index($shapes, ($color $size))} {
+        background-color: $color;
+        width: $size;
+        height: $size;
+        margin: (-$size/2) 0 0 (-$size/2);
+      }
+    }
+  }
+}
+
+#home .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+  mix-blend-mode: screen;
+}
+
+h1 {
+  color: #000;
+  margin: 0;
+  user-select: none;
+  font-size: 10em;
+}
+
+p {
+  margin: 0;
+}
+
+.anim1 {
+  position: relative;
+  span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-origin: 100% 0;
+    background-color: #fff;
+  }
+}
+
+#travel {
+  position: relative;
+  .container--phone {
+    width: 320px;
+    height: 640px;
+    background-image: linear-gradient(#00000027, #00000023),
+      url("../images/vacation.webp");
+    background-position: bottom;
+    background-size: cover;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2rem;
+    box-shadow: 0px 56px 72px -2rem rgba(50, 55, 63, 0.66);
     overflow: hidden;
 
-    .shape{
-        will-change: transform;
-        position: absolute;
-        border-radius: 5555px;
+    .body {
+      background-color: #232631;
+      color: #fff;
+      margin-top: 200px;
+      height: calc(100% - 200px);
+      border-radius: 2rem 2rem 0 0;
+      padding: 2rem 1.25rem 82px 1.25rem;
 
-        $shapes: (#005ffe: 650px, #ffe5e3: 440px, #ffcc57: 270px);
+      h1 {
+        font-size: 1.25rem;
+        color: inherit;
+      }
 
-        @each $color, $size in $shapes {
-            &.shape-#{index($shapes, ($color $size))} {
-                background-color: $color;
-                width: $size;
-                height: $size;
-                margin: (-$size/2) 0 0 (-$size/2);
+      .description {
+        font-size: 14px;
+        opacity: 0.6;
+        color: inherit;
+      }
+
+      .rating-container {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+
+        .users {
+          display: flex;
+          align-items: center;
+          .img {
+            height: 2rem;
+            width: 2rem;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 5555px;
+            &:not(:first-child) {
+              margin-left: -10px;
             }
+          }
         }
+
+        .rating-text {
+          margin-left: 14px;
+          font-size: 16px;
+          opacity: 0.6;
+          font-weight: 600;
+        }
+
+        .check {
+          background-color: #3c72fd;
+          border: none;
+          color: #fff;
+          padding: 10px 15px;
+          border-radius: 1.25rem;
+          font-size: 11px;
+          letter-spacing: 0.5px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+      }
+
+      .about {
+        font-weight: 600;
+        font-size: 16px;
+        margin-top: 1.25rem;
+      }
+
+      .details {
+        font-size: 12px;
+        opacity: 0.6;
+        max-height: 160px;
+        overflow-y: auto;
+      }
     }
+  }
+
+  .booking-container {
+    background-color: #2e3341;
+    border-radius: 2rem 2rem 0 0;
+    padding: 1.25rem;
+    height: 82px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+
+    .book-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .book {
+        background-color: #3c72fd;
+        color: #fff;
+        border: none;
+        padding: 10px 2rem;
+        font-size: 12px;
+        border-radius: 1.25rem;
+        user-select: none;
+        cursor: pointer;
+        &.back {
+          background-color: #fd3c56;
+        }
+      }
+
+      .cost {
+        p:first-child {
+          opacity: 0.6;
+          font-size: 12px;
+        }
+        p:last-child {
+          span {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+
+  .method {
+    opacity: 0;
+    pointer-events: none;
+    border-top: 1px solid #3d4455;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+
+    h2 {
+      margin: 0;
+      font-size: 1.125rem;
+      opacity: 0.6;
+      font-weight: 600;
+      &:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
+
+    .creditcard {
+      background-color: #3b4457;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      svg {
+        height: 20px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .disclaimer {
+      opacity: 0.6;
+      font-size: 15px;
+    }
+  }
+
+  .confirm {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: -20px;
+    background-color: #3b4457;
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 14px;
+    cursor: not-allowed;
+    border-radius: 20px;
+    color: #747e97;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .booking-container.open .confirm {
+    pointer-events: all;
+  }
 }
 
-#home .content{
+html.has-scroll-smooth {
+    overflow: hidden;
+}
+
+html.has-scroll-dragging {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.has-scroll-smooth body {
+    overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+    min-height: 100vh;
+}
+
+.c-scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 11px;
+    height: 100vh;
+    transform-origin: center right;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+}
+.c-scrollbar:hover {
+    transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+    opacity: 1;
+}
+
+.c-scrollbar_thumb {
     position: absolute;
     top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: #fff;
-    mix-blend-mode: screen;
+    right: 0;
+    background-color: #3c72fd;
+    opacity: .5;
+    width: 7px;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: -webkit-grab;
+    cursor: grab;
 }
-
-h1{
-    color: #000;
-    margin: 0;
-    user-select: none;
-    font-size: 10em;
-}
-
-p{
-    margin: 0;
-}
-
-.anim1{
-    position: relative;
-    span::after{
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        transform-origin: 100% 0;
-        background-color: #fff;
-    }
-}
-
-#travel{
-    position: relative;
-    .container--phone{
-        width: 320px;
-        height: 640px;
-        background-image: linear-gradient(#00000027,#00000023), url("../images/vacation.webp");
-        background-position: bottom;
-        background-size: cover;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        border-radius: 2rem;
-        box-shadow: 0px 56px 72px -2rem rgba(50,55,63,.66);
-        overflow: hidden;
-
-        .body{
-            background-color: #232631;
-            color: #fff;
-            margin-top: 200px;
-            height: calc(100% - 200px);
-            border-radius: 2rem 2rem 0 0;
-            padding: 2rem 1.25rem 82px 1.25rem;
-
-            h1{
-                font-size: 1.25rem;
-                color: inherit;
-            }
-
-            .description{
-                font-size: 14px;
-                opacity: .6;
-                color: inherit;
-            }
-
-            .rating-container{
-                margin-top: 2rem;
-                display: flex;
-                justify-content: space-between;
-
-                .users{
-                    display: flex;
-                    align-items: center;
-                    .img{
-                        height: 2rem;
-                        width: 2rem;
-                        object-fit: cover;
-                        object-position: center;
-                        border-radius: 5555px;
-                        &:not(:first-child){
-                            margin-left: -10px;
-                        }
-                    }
-                }
-
-                .rating-text{
-                    margin-left: 14px;
-                    font-size: 16px;
-                    opacity: .6;
-                    font-weight: 600;
-                }
-
-                .check{
-                    background-color: #3c72fd;
-                    border: none;
-                    color: #fff;
-                    padding: 10px 15px;
-                    border-radius: 1.25rem;
-                    font-size: 11px;
-                    letter-spacing: .5px;
-                    font-weight: 600;
-                    cursor: pointer;
-                }
-            }
-
-            .about{
-                font-weight: 600;
-                font-size: 16px;
-                margin-top: 1.25rem;
-            }
-
-            .details{
-                font-size: 12px;
-                opacity: .6;
-                max-height: 160px;
-                overflow-y: auto;
-            }
-        }
-    }
-
-    .booking-container{
-        background-color: #2e3341;
-        border-radius: 2rem 2rem 0 0;
-        padding: 1.25rem;
-        height: 82px;
-        position: absolute;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-        color: #fff;
-
-        .book-inner{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            .book{
-                background-color: #3c72fd;
-                color: #fff;
-                border: none;
-                padding: 10px 2rem;
-                font-size: 12px;
-                border-radius: 1.25rem;
-                user-select: none;
-                cursor: pointer;
-                &.back{
-                    background-color: #fd3c56;
-                }
-            }
-
-            .cost{
-                p:first-child{
-                    opacity: .6;
-                    font-size: 12px;
-                }
-                p:last-child{
-                    span{
-                        opacity: .5;
-                    }
-                }
-            }
-        }
-    }
-
-     .method{
-        opacity: 0;
-        pointer-events: none;
-        border-top: 1px solid #3d4455;
-        margin-top: 1.25rem;
-        padding-top: 1.25rem;
-
-        h2{
-            margin: 0;
-            font-size: 1.125rem;
-            opacity: .6;
-            font-weight: 600;
-            &:not(:first-child){
-                margin-top: 1em;
-            }
-        }
-
-        .creditcard{
-            background-color: #3b4457;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-
-            svg{
-                height: 20px;
-            }
-
-            span{
-                font-size: 14px;
-            }
-        }
-
-        .disclaimer{
-            opacity: .6;
-            font-size: 15px;
-        }
-    }
-
-    .confirm{
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        bottom: -20px;
-        background-color: #3b4457;
-        padding: 10px 30px;
-        text-align: center;
-        font-size: 14px;
-        cursor: not-allowed;
-        border-radius: 20px;
-        color: #747e97;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .booking-container.open .confirm{
-        pointer-events: all;
-    }
+.has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
 }
