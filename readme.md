@@ -4,6 +4,12 @@ A fun text animation with GSAP and css mix-blend-mode :)
 
 Example 1: [https://nsmnia.github.io/GSAP/](https://nsmnia.github.io/GSAP/)
 
-![End result](/assets/images/example.png)
+![Example 1](/assets/images/example.png)
 
 Example 2: [https://nsmnia.github.io/GSAP/index2.html](https://nsmnia.github.io/GSAP/index2.html)
+
+
+
+Example 3: [https://nsmnia.github.io/GSAP/index3.html](https://nsmnia.github.io/GSAP/index3.html)
+
+![Example 3](/assets/images/example3.png)

@@ -29,3 +29,51 @@ if(document.querySelector('#index2')){
         }, 2200);
     })
 }
+
+if(document.querySelector('#travel')){
+    let t1 = gsap.timeline({paused: true, reversed: true});
+
+    const bookNow = document.querySelector('.book');
+    const containerBody = document.querySelector('.body');
+    const containerBooking = document.querySelector('.booking-container');
+
+    bookNow.addEventListener('click', e=> {
+        if(bookNow.classList.contains('back')){
+            bookNow.classList.remove('back');
+            containerBooking.classList.remove('open');
+            bookNow.innerText = "Book now";
+            t1.reverse();
+        }else{
+            bookNow.classList.add('back');
+            containerBooking.classList.add('open');
+            bookNow.innerText = "Cancel";
+            t1.play();
+        }
+    });
+
+    containerBody.addEventListener('click', e => {
+        if(bookNow.classList.contains('back')){
+            bookNow.classList.remove('back');
+            containerBooking.classList.remove('open');
+            bookNow.innerText = "Book now";
+            t1.reverse();
+        }
+    });
+
+    t1.to(".body", {
+        ease:"power1.inOut",
+        marginTop: 0
+    }, 0).to('.booking-container', {
+        ease: 'power1.inOut',
+        zIndex: 10,
+        height: "calc(100% - 90px)"
+    },0).to('.method', {
+        ease: 'power1.inOut',
+        opacity: 1,
+        pointerEvents: 'all'
+    }, 0).to('.confirm', {
+        ease: 'power1.inOut',
+        opacity: 1,
+        bottom: 20,
+    })
+}
