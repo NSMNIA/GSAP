@@ -8,6 +8,7 @@ Example 1: [https://nsmnia.github.io/GSAP/](https://nsmnia.github.io/GSAP/)
 
 Example 2: [https://nsmnia.github.io/GSAP/index2.html](https://nsmnia.github.io/GSAP/index2.html)
 
+![Example 2](/assets/images/example2.png)
 
 
 Example 3: [https://nsmnia.github.io/GSAP/index3.html](https://nsmnia.github.io/GSAP/index3.html)
